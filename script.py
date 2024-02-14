@@ -39,3 +39,11 @@ for i, match in enumerate(matches['results']):
     with open(f'data/matches/{match_id}-{home}-{away}.json', 'w') as handle:
         json.dump(json_data, handle)
     
+    match_info = requests.get(f'https://skillcorner.com/api/match/{match_id}/', auth=authorization).text
+    match_info = json.loads(match_info)
+    
+    with open(f'data/matches/{match_id}-{home}-{away}-match-info.json', 'w') as handle:
+        json.dump(match_info, handle)
+        
+
+print('--done--')
